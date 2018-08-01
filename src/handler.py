@@ -19,6 +19,38 @@ def start_db(db_path):
     version string, mxr integer, mxf integer, VERFM text)""")
     return conn, c
 
+def create_connection(db_file):
+    """ create a database connection to the SQLite database
+        specified by the db_file
+    :param db_file: database file
+    :return: Connection object or None
+    """
+    try:
+        conn = sqlite3.connect(db_file)
+        return conn
+    except Error as e:
+        print(e)
+
+    return None
+
+def select_and_return(conn, version_value, logic_value):
+    """
+    Query tasks by priority
+    :param conn: the Connection object
+    :param priority:
+    :return:
+    """
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM entries WHERE version=? AND logic=?", (version_value, logic_value,))
+
+    rows = cur.fetchall()
+
+    return rows
+
+def remove_duplicates(conn):
+    cur = conn.cursor()
+    cur.execute("DELETE FROM entries WHERE rowid NOT IN ( SELECT MIN(rowid) FROM entries GROUP BY version, logic)")
+
 def create_insert_query(json_output):
     json_dict = json.loads(json_output) # tentar colocar tudo numa lista
     keys = [val for val in json_dict.keys()]
@@ -80,6 +112,25 @@ def format_body_data_to_json(string_parsed):
     json_output = json.dumps(dict)
     return json_output
 
+def format_list_of_lists_to_json(db_output):
+    dict_output = {}
+    counter = 0
+    for data in db_output:
+        dict_output[counter] = { "logic": data[0], # have to look here how to put one dict after another
+                         "serial": data[1],
+                         "model": data[2],
+                         "sam": data[3],
+                         "ptid": data[4],
+                         "plat": data[5],
+                         "version": data[6],
+                         "mxr": data[7],
+                         "mxf": data[8],
+                         "VERFM": data[9]
+                         }
+        counter += 1
+    json_output = json.dumps(dict_output)
+    return json_output
+
 def validate_json_with_schema(json_output):
     schema = { "title": "Terminal",
                 "type": "object",
@@ -118,8 +169,8 @@ def validate_json_with_schema(json_output):
     except:
         return False
 
-# Requests besides POST will be blocked
-@app.route('/textHtml', methods=['POST'])
+# DELETE requests will be blocked
+@app.route('/post', methods=['POST'])
 def main_method_post():
 
     db_path = 'test.db'
@@ -140,6 +191,23 @@ def main_method_post():
     else:
         return "Invalid Output"
 
+@app.route('/get', methods=['GET'])
+def main_method_get():
+
+    database = 'test.db'
+    # create database connection
+    conn = create_connection(database)
+
+    remove_duplicates(conn)
+
+    with conn:
+        version = request.args.get('version')
+        logic = request.args.get('logic')
+        if (version and logic) != None: # if key does not exist, returns None
+            table_rows = select_and_return(conn, version, logic)
+            return format_list_of_lists_to_json(table_rows)
+        else:
+            return "Invalid request"
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000) # run app in debug mode on port 5000
