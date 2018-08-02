@@ -202,7 +202,6 @@ def validate_json_with_schema(json_output):
 # DELETE requests will be blocked
 @app.route('/', methods=['POST'])
 def main_method_post():
-
     db_path = 'test.db'
     conn, c = start_db(db_path)
 
@@ -221,17 +220,10 @@ def main_method_post():
     else:
         return "Invalid Output"
 
-@app.route('/', methods=['GET'])
-def main_method_get():
-
-    version = request.args.get('version')
-    logic = request.args.get('logic')
-    db_name = request.args.get('entity')
-    database = db_name
-
-    # create database connection
+@app.route('/<version>/<entity>/<int:logic>', methods=['GET'])
+def main_method_get(version,entity,logic):
+    database = entity
     conn = create_connection(database)
-
     remove_duplicates(conn)
 
     with conn:
@@ -241,15 +233,9 @@ def main_method_get():
         else:
             return "Invalid request"
 
-@app.route('/', methods=['PUT'])
-def main_method_put():
-
-    version = request.args.get('version')
-    logic = request.args.get('logic')
-    db_name = request.args.get('entity')
-    database = db_name
-
-    # create database connection
+@app.route('/<version>/<entity>/<int:logic>', methods=['PUT'])
+def main_method_put(version,entity,logic):
+    database = entity
     conn = create_connection(database)
     with conn:
 

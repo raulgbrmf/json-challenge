@@ -28,6 +28,6 @@ To test it you can run a POST request on http://127.0.0.1:5000/post (or localhos
 If your body content is in the appropriate format it will return it on screen in a Json format.
 If not, it will display "Invalid Output."
 
-To retrieve data that was stored by a POST request you can use a GET request on http://127.0.0.1:5000/?version=version_id&entity=db_name&logic=logic_id (or localhost:5000/?version=version_id&entity=db_name&logic=logic_id)
+To retrieve data that was stored by a POST request you can use a GET request on http://127.0.0.1:5000/version_id/db_name/logic_id (or localhost:5000/version_id/db_name/logic_id)
 
-Finally, to change some information you can use a PUT request on http://127.0.0.1:5000/?version=version_id&entity=db_name&logic=logic_id (or localhost:5000/?version=version_id&entity=db_name&logic=logic_id) with a json content on the body of the request.
+Finally, to change some information you can use a PUT request on http://127.0.0.1:5000/version_id/db_name/logic_id (or localhost:5000/version_id/db_name/logic_id) with a json content on the body of the request.
