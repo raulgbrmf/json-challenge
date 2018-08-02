@@ -200,7 +200,7 @@ def validate_json_with_schema(json_output):
 
 
 # DELETE requests will be blocked
-@app.route('/post', methods=['POST'])
+@app.route('/', methods=['POST'])
 def main_method_post():
 
     db_path = 'test.db'
@@ -221,7 +221,7 @@ def main_method_post():
     else:
         return "Invalid Output"
 
-@app.route('/get', methods=['GET'])
+@app.route('/', methods=['GET'])
 def main_method_get():
 
     version = request.args.get('version')
@@ -241,7 +241,7 @@ def main_method_get():
         else:
             return "Invalid request"
 
-@app.route('/put', methods=['PUT'])
+@app.route('/', methods=['PUT'])
 def main_method_put():
 
     version = request.args.get('version')
