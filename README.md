@@ -1,8 +1,8 @@
 # Json Challenge
 
-This current version is responsible for extract the body from a POST request, put in the appropriate Json format and after the validation with the jsonschema return the Json output and store it in a sqlite database file.
+The current version is responsible for extracting the body from a POST request, put in the appropriate Json format and after validation with the jsonschema return the Json output and store it in a sqlite database file.
 
-As I could choose between Python or Java, I have chosen Python due to the simplicity to write a code in it and mainly because of Flask. Flask is a microframework written in Python that eases the learning curve to develop simple web applications. In my own opinion, Python codes tends to be cleaner to write and read too when compared to Java. As this challenge was a small web application I think these choices made sense.
+As I was able to choose between Python or Java, I chose Python due to the simplicity to write a code in it and mainly because of Flask. Flask is a microframework written in Python that eases the learning curve to develop simple web applications. In my opinion, Python codes tends to be more clear to write and read than Java. As this challenge is a small web application I think these choices make sense.
 
 ## Getting Started
 
@@ -25,7 +25,7 @@ To run the application just run the Makefile using make run.
 make run
 ```
 
-### testing
+### Testing
 
 To test this application just run the Makefile using make test.
 
@@ -33,16 +33,13 @@ To test this application just run the Makefile using make test.
 make test
 ```
 
-
-This version will run in debug mode on port 5000.
-
-To test it you can run a POST request on http://127.0.0.1:5000/post (or localhost:5000/post). ( You can use Postman to facilitate this operation.)
+To test it you can run a POST request on http://127.0.0.1:8000/post (or localhost:8000/post). ( You can use Postman to facilitate this operation.)
 If your body content is in the appropriate format it will return it on screen in a Json format.
 If not, it will display "Invalid Output."
 
-To retrieve data that was stored by a POST request you can use a GET request on http://127.0.0.1:5000/version_id/db_name/logic_id (or localhost:5000/version_id/db_name/logic_id)
+To retrieve data that was stored by a POST request you can use a GET request on http://127.0.0.1:8000/version_id/db_name/logic_id (or localhost:8000/version_id/db_name/logic_id)
 
-Finally, to change some information you can use a PUT request on http://127.0.0.1:5000/version_id/db_name/logic_id (or localhost:5000/version_id/db_name/logic_id) with a json content on the body of the request.
+Finally, to change some information you can use a PUT request on http://127.0.0.1:8000/version_id/db_name/logic_id (or localhost:8000/version_id/db_name/logic_id) with a json content on the body of the request.
 
 ### Heroku
 
