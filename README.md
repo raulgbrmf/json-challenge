@@ -43,3 +43,7 @@ If not, it will display "Invalid Output."
 To retrieve data that was stored by a POST request you can use a GET request on http://127.0.0.1:5000/version_id/db_name/logic_id (or localhost:5000/version_id/db_name/logic_id)
 
 Finally, to change some information you can use a PUT request on http://127.0.0.1:5000/version_id/db_name/logic_id (or localhost:5000/version_id/db_name/logic_id) with a json content on the body of the request.
+
+### Heroku
+
+This API is also deployed by Heroku on : https://flask-json-challenge.herokuapp.com/

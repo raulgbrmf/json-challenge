@@ -39,35 +39,35 @@ class UserTest(unittest.TestCase):
             dict_response = json.loads(response.get_data().decode("utf-8"))
             self.assertEqual(output, dict_response)
 
-# #rever os testes abaixo
-#     def test_get_after_post(self):
-#         input = "1234;abc;QWE;0;F12A;4;version1;0;09876;something"
-#         response = self.app.post('/',
-#                                  data=input,
-#                                  headers={"content-type": "text/html"})
-#         response = self.app.get('/version1/test.db/1234')
-#         dict_output = json.loads(response.get_data().decode("utf-8"))
-#         dict_expected = {"0":{"logic": "1234", "serial": "abc", "model": "QWE",
-#                         "sam": 0, "ptid": "F12A", "plat": 4, "version": "version1",
-#                         "mxr": 0, "mxf": 9876, "VERFM": "something"}}
-#
-#         self.assertEqual(dict_expected, dict_output)
-#
-#     def test_put_after_post(self):
-#         input = "5678;abc;QWE;0;F12A;4;version2;0;09876;something"
-#         response_post = self.app.post('/',
-#                                  data=input,
-#                                  headers={"content-type": "text/html"})
-#
-#         put_dict = {"logic": "5678", "serial": "abc", "model": "QWE",
-#                     "sam": 0, "ptid": "F12A", "plat": 4, "version": "version2",
-#                     "mxr": 0, "mxf": 9876, "VERFM": "something"}
-#         json_input = json.dumps(put_dict)
-#         response_put = self.app.put('/version2/test.db/5678',
-#                                 data=json_input,
-#                                 headers={"content-type": "application/json"})
-#
-#         self.assertEqual("Request OK", response_put.get_data().decode("utf-8"))
+#rever os testes abaixo
+    def test_get_after_post(self):
+        input = "1234;abc;QWE;0;F12A;4;version1;0;09876;something"
+        response = self.app.post('/',
+                                 data=input,
+                                 headers={"content-type": "text/html"})
+        response = self.app.get('/version1/test.db/1234')
+        dict_output = json.loads(response.get_data().decode("utf-8"))
+        dict_expected = {"0":{"logic": "1234", "serial": "abc", "model": "QWE",
+                        "sam": 0, "ptid": "F12A", "plat": 4, "version": "version1",
+                        "mxr": 0, "mxf": 9876, "VERFM": "something"}}
+
+        self.assertEqual(dict_expected, dict_output)
+
+    def test_put_after_post(self):
+        input = "5678;abc;QWE;0;F12A;4;version2;0;09876;something"
+        response_post = self.app.post('/',
+                                 data=input,
+                                 headers={"content-type": "text/html"})
+
+        put_dict = {"logic": "5678", "serial": "abc", "model": "QWE",
+                    "sam": 0, "ptid": "F12A", "plat": 4, "version": "version2",
+                    "mxr": 0, "mxf": 9876, "VERFM": "something"}
+        json_input = json.dumps(put_dict)
+        response_put = self.app.put('/version2/test.db/5678',
+                                data=json_input,
+                                headers={"content-type": "application/json"})
+
+        self.assertEqual("Request OK", response_put.get_data().decode("utf-8"))
 
 
     def tearDown(self):
