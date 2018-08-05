@@ -1,3 +1,4 @@
+import os
 import json
 import sqlite3
 # import main Flask class and request object
@@ -22,6 +23,8 @@ def create_connection(db_file):
     :param db_file: database file
     :return: Connection object or None
     """
+    if not os.path.isfile(db_file):
+        return start_db(db_file)
     try:
         conn = sqlite3.connect(db_file)
         c = conn.cursor()

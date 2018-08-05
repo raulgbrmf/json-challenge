@@ -5,7 +5,7 @@ import sqlite3
 from flask import Flask, request
 from jsonschema import validate
 from sqlite3 import Error
-from db import start_db, create_connection, select_and_return, update_table, remove_duplicates, create_insert_query
+from src.db import start_db, create_connection, select_and_return, update_table, remove_duplicates, create_insert_query
 
 app = Flask(__name__)  # create the Flask app
 
@@ -74,7 +74,7 @@ def format_list_of_lists_to_json(db_output):
     dict_output = {}
     counter = 0
     for data in db_output:
-        dict_output[counter] = {"logic": data[0], 
+        dict_output[counter] = {"logic": data[0],
                                 "serial": data[1],
                                 "model": data[2],
                                 "sam": data[3],
@@ -174,5 +174,5 @@ def main_method_put(version, entity, logic):
 
 if __name__ == '__main__':
     start_db(database_name)
-    # run app in debug mode on port 5000
-    app.run(debug=True, port=5000)
+    # run app in debug mode on port 8000 with gunicorn
+    app.run()

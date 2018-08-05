@@ -2,6 +2,8 @@
 
 This current version is responsible for extract the body from a POST request, put in the appropriate Json format and after the validation with the jsonschema return the Json output and store it in a sqlite database file.
 
+As I could choose between Python or Java, I have chosen Python due to the simplicity to write a code in it and mainly because of Flask. Flask is a microframework written in Python that eases the learning curve to develop simple web applications. In my own opinion, Python codes tends to be cleaner to write and read too when compared to Java. As this challenge was a small web application I think these choices made sense.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
@@ -9,6 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 ### Prerequisites
 
 To run it you first need to install the tools listed in the requirements file.
+Note that this program runs in Python 3.
 
 ```
 make install
@@ -16,11 +19,20 @@ make install
 
 ### Running
 
-To run the application just run the Makefile using the command make run.
+To run the application just run the Makefile using make run.
 
 ```
 make run
 ```
+
+### testing
+
+To test this application just run the Makefile using make test.
+
+```
+make test
+```
+
 
 This version will run in debug mode on port 5000.
 
