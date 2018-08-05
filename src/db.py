@@ -75,7 +75,6 @@ def remove_duplicates(conn):
 
 
 def create_insert_query(json_output):
-    # tentar colocar tudo numa lista
     json_dict = json.loads(json_output)
     keys = [val for val in json_dict.keys()]
     values = [val for val in json_dict.values()]

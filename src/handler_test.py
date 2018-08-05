@@ -39,7 +39,7 @@ class UserTest(unittest.TestCase):
             dict_response = json.loads(response.get_data().decode("utf-8"))
             self.assertEqual(output, dict_response)
 
-#rever os testes abaixo
+
     def test_get_after_post(self):
         input = "1234;abc;QWE;0;F12A;4;version1;0;9876;something"
         response = self.app.post('/',
