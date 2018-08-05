@@ -16,7 +16,6 @@ def start_db(db_path):
     version string, mxr integer, mxf integer, VERFM text)""")
     return conn, c
 
-
 def create_connection(db_file):
     """ create a database connection to the SQLite database
         specified by the db_file
